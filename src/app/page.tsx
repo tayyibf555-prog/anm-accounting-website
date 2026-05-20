@@ -660,7 +660,7 @@ export default function HomePage() {
               </span>
               <span>
                 <span className="text-ink-faint">Prepared</span>{" "}
-                <span className="text-ink">A.M.</span>
+                <span className="text-ink">{"{ initials }"}</span>
               </span>
               <span>
                 <span className="text-ink-faint">Doc</span>{" "}

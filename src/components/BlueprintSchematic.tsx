@@ -255,7 +255,7 @@ export function BlueprintSchematic({
         opacity="0.85"
         textAnchor="end"
       >
-        DRAWN BY A.M.
+        {"DRAWN BY { initials }"}
       </text>
     </svg>
   );

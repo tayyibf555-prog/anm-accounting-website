@@ -16,7 +16,7 @@ const milestones = [
 
 const team = [
   {
-    name: "Alexander Niall MacDonald",
+    name: "{ founder name }",
     role: "Founding Partner, CA",
     bio: "Twelve years at one of the mid-tier firms before founding ANM in 2014. Specialises in owner-managed business taxation and corporate restructuring. ICAS member since 2008.",
   },
@@ -87,7 +87,7 @@ export default function AboutPage() {
 
           <div className="md:col-span-8 md:col-start-5 prose-narrow">
             <p>
-              ANM was founded in 2014 by {"{ owner name }"}, who had spent
+              ANM was founded in 2014 by {"{ founder name }"}, who had spent
               twelve years at a mid-tier Glasgow firm and concluded that the
               standard model of accountancy practice was structurally unable to
               do the work clients actually wanted.
