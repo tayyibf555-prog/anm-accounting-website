@@ -10,10 +10,10 @@
   --color-paper-deep: oklch(0.94 0.012 85);
   --color-rule: oklch(0.88 0.010 85);
 
-  --color-blue: oklch(0.38 0.16 262);
-  --color-blue-deep: oklch(0.30 0.14 264);
+  --color-blue: oklch(0.31 0.14 262);
+  --color-blue-deep: oklch(0.24 0.12 264);
   --color-blue-soft: oklch(0.92 0.04 250);
-  --color-blue-ink: oklch(0.50 0.18 262);
+  --color-blue-ink: oklch(0.45 0.17 262);
 
   --color-amber: oklch(0.78 0.13 232);
 
