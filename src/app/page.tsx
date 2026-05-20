@@ -224,7 +224,7 @@ export default function HomePage() {
       {/* TAX TICKER — brand signature */}
       <TaxTicker />
 
-      {/* PRINCIPLES — louder, alternating layout */}
+      {/* PRINCIPLES — louder, alternating layout, engineering-paper grid */}
       <section className="bg-paper-deep hairline-bottom">
         <div className="container-edit py-20 md:py-28">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12 md:mb-16">
@@ -292,29 +292,56 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* MANIFESTO — single statement, paper, dramatic scale */}
-      <section className="hairline-bottom">
-        <div className="container-edit py-20 md:py-32">
+      {/* MANIFESTO — blue-drenched, blueprint-grid background */}
+      <section className="blue-band relative overflow-hidden">
+        <div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, oklch(0.42 0.10 262) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.42 0.10 262) 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+            backgroundPosition: "-1px -1px",
+            opacity: 0.4,
+          }}
+        />
+        <div className="relative container-edit py-20 md:py-32">
           <div className="grid grid-cols-12 gap-6">
-            <p className="col-span-12 md:col-span-1 eyebrow self-start">
+            <p
+              className="col-span-12 md:col-span-1 font-mono text-[0.6875rem] uppercase tracking-[0.18em] self-start"
+              style={{ color: "oklch(0.78 0.07 250)" }}
+            >
               ¶ 001
             </p>
             <blockquote className="col-span-12 md:col-span-10 md:col-start-2 reveal">
-              <p className="manifesto">
+              <p
+                className="font-display text-paper"
+                style={{
+                  fontSize: "clamp(1.875rem, 5.5vw, 4.75rem)",
+                  lineHeight: 1.02,
+                  letterSpacing: "-0.035em",
+                  maxWidth: "22ch",
+                  fontWeight: 400,
+                }}
+              >
                 Most accountants are paid for{" "}
-                <span className="text-ink font-semibold">accuracy</span>.
+                <span className="text-amber font-semibold">accuracy</span>.
                 We're paid to ring you{" "}
-                <span className="amber-underline text-ink font-semibold">
+                <span
+                  className="font-semibold text-paper"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(to right, var(--color-amber), var(--color-amber))",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "100% 2px",
+                    backgroundPosition: "0 100%",
+                    paddingBottom: "2px",
+                  }}
+                >
                   in October
                 </span>
                 .
               </p>
-              <footer className="mt-12 flex items-center gap-4">
-                <span className="block w-12 h-px bg-ink-faint" />
-                <cite className="not-italic font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-ink-mute">
-                  {/* REPLACE */}A. MacDonald, CA · Founding Partner
-                </cite>
-              </footer>
             </blockquote>
           </div>
         </div>

@@ -6,9 +6,9 @@
   --color-ink-mute: oklch(0.55 0.010 250);
   --color-ink-faint: oklch(0.72 0.008 250);
 
-  --color-paper: oklch(0.975 0.008 85);
-  --color-paper-deep: oklch(0.94 0.012 85);
-  --color-rule: oklch(0.88 0.010 85);
+  --color-paper: oklch(0.965 0.010 85);
+  --color-paper-deep: oklch(0.92 0.014 80);
+  --color-rule: oklch(0.86 0.012 80);
 
   --color-blue: oklch(0.31 0.14 262);
   --color-blue-deep: oklch(0.24 0.12 264);
@@ -237,6 +237,54 @@
   .blue-band {
     background-color: var(--color-blue);
     color: var(--color-paper);
+  }
+
+  /* Engineering-paper grid — applied to paper-deep band sections so they
+     don't read as flat white. Lines are faint and warm-toned. */
+  .bg-paper-grid {
+    background-color: var(--color-paper-deep);
+    background-image:
+      linear-gradient(to right, oklch(0.84 0.014 80) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(0.84 0.014 80) 1px, transparent 1px);
+    background-size: 36px 36px;
+    background-position: -1px -1px;
+  }
+
+  .bg-paper-dots {
+    background-color: var(--color-paper);
+    background-image: radial-gradient(
+      oklch(0.84 0.014 80) 1px,
+      transparent 1px
+    );
+    background-size: 22px 22px;
+    background-position: -1px -1px;
+  }
+
+  /* Cross-hatch corner ornaments — used on standalone paper sections */
+  .paper-frame {
+    background-color: var(--color-paper);
+    position: relative;
+  }
+  .paper-frame::before,
+  .paper-frame::after {
+    content: "";
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    border-color: var(--color-rule);
+    pointer-events: none;
+  }
+  .paper-frame::before {
+    top: 0;
+    left: 0;
+    border-top: 1px solid;
+    border-left: 1px solid;
+  }
+  .paper-frame::after {
+    bottom: 0;
+    right: 0;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
   }
 
   .blue-band h1, .blue-band h2, .blue-band h3 {
