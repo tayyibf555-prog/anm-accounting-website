@@ -204,12 +204,12 @@ export default function HomePage() {
                 {/* Corner registration marks */}
                 <span
                   className="absolute top-3 left-3 w-3 h-3 border-l border-t"
-                  style={{ borderColor: "oklch(0.62 0.14 55)" }}
+                  style={{ borderColor: "var(--color-amber)" }}
                   aria-hidden
                 />
                 <span
                   className="absolute bottom-3 right-3 w-3 h-3 border-r border-b"
-                  style={{ borderColor: "oklch(0.62 0.14 55)" }}
+                  style={{ borderColor: "var(--color-amber)" }}
                   aria-hidden
                 />
               </div>
