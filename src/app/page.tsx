@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { TaxTicker } from "@/components/TaxTicker";
+import { BlueprintSchematic } from "@/components/BlueprintSchematic";
+import { DeadlineCountdown } from "@/components/DeadlineCountdown";
+import { CountUp } from "@/components/CountUp";
 
 const services = [
   {
@@ -52,59 +55,166 @@ const principles = [
   },
 ];
 
-const figures = [
-  { label: "Email response, business hours", value: "< 24", unit: "hours guaranteed" },
-  { label: "Annual fee proposals honoured", value: "100", unit: "%" },
-  { label: "Quarterly reviews per engagement, scheduled", value: "4", unit: "written, calendared, not optional" },
-  { label: "Glasgow-based clients served since 2014", value: "240", unit: "and counting" },
+const figures: { label: string; prefix?: string; num: number; suffix?: string; unit: string }[] = [
+  { label: "Email response, business hours", prefix: "< ", num: 24, unit: "hours guaranteed" },
+  { label: "Annual fee proposals honoured", num: 100, suffix: "%", unit: "no exceptions, written first" },
+  { label: "Quarterly reviews per engagement, scheduled", num: 4, unit: "written, calendared, not optional" },
+  { label: "Glasgow-based clients served since 2014", num: 240, suffix: "+", unit: "and counting" },
 ];
 
 export default function HomePage() {
   return (
     <>
-      {/* HERO — monumental, with watermark */}
-      <section className="relative overflow-hidden">
-        <div className="watermark" aria-hidden>
-          <span className="watermark__text">ANM.</span>
+      {/* HERO — drenched-blue broadsheet, schematic illustration, live countdown */}
+      <section className="blue-band relative overflow-hidden">
+        {/* Blueprint schematic — sits absolute on the right, paper-tinted lines */}
+        <div
+          aria-hidden
+          className="absolute inset-y-0 right-0 hidden lg:block pointer-events-none"
+          style={{
+            width: "min(58%, 760px)",
+            color: "oklch(0.85 0.04 245)",
+            opacity: 0.6,
+            transform: "translate(8%, 4%)",
+          }}
+        >
+          <BlueprintSchematic className="w-full h-full" />
         </div>
 
-        <div className="relative container-edit pt-24 md:pt-36 pb-24 md:pb-28">
-          <p className="eyebrow section-rule">
-            Chartered accountants · Established Glasgow 2014
-          </p>
-
-          <h1
-            className="mt-10 font-display"
+        <div className="relative container-edit pt-8 md:pt-10 pb-20 md:pb-28">
+          {/* Masthead — broadsheet flag */}
+          <div
+            className="grid grid-cols-2 md:grid-cols-12 gap-4 py-5 mb-12 md:mb-20"
             style={{
-              fontSize: "clamp(2.75rem, 6vw, 5rem)",
-              lineHeight: 0.95,
-              letterSpacing: "-0.045em",
-              maxWidth: "16ch",
-              fontWeight: 600,
+              borderTop: "2px solid var(--color-paper)",
+              borderBottom: "1px solid oklch(0.55 0.14 245)",
             }}
           >
-            Accountants for{" "}
-            <span className="text-blue-ink" style={{ fontWeight: 600 }}>
-              ambitious
-            </span>{" "}
-            businesses.
-          </h1>
+            <div className="col-span-2 md:col-span-3 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-paper/70 flex items-center gap-3">
+              <span className="text-amber">●</span>
+              Issue No. {new Date().getFullYear() - 2013}
+            </div>
+            <div className="hidden md:block md:col-span-3 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-paper/70">
+              Est. Glasgow 2014
+            </div>
+            <div className="hidden md:block md:col-span-3 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-paper/70">
+              ICAS member firm
+            </div>
+            <div className="col-span-2 md:col-span-3 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-paper/70 md:text-right">
+              {new Date().toLocaleDateString("en-GB", { weekday: "long", day: "2-digit", month: "long", year: "numeric" })}
+            </div>
+          </div>
 
-          <p className="deck mt-10" style={{ maxWidth: "58ch" }}>
-            We are a small Glasgow firm built around a specific idea: that an
-            accountant should be the person you call{" "}
-            <span className="amber-underline">before a decision</span>, not the
-            one who reconciles its consequences.
-          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+            <div className="lg:col-span-7 xl:col-span-7">
+              <p className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-amber mb-6">
+                Vol. 12  /  Chartered accountants  /  Glasgow
+              </p>
 
-          <div className="mt-12 flex flex-wrap items-center gap-x-10 gap-y-5">
-            <Link href="/contact" className="btn-primary">
-              A 30-minute call to see how we can help you{" "}
-              <span className="arrow">→</span>
-            </Link>
-            <Link href="/services" className="btn-secondary">
-              See services <span className="arrow">→</span>
-            </Link>
+              <h1
+                className="font-display text-paper"
+                style={{
+                  fontSize: "clamp(3rem, 7vw, 6.5rem)",
+                  lineHeight: 0.88,
+                  letterSpacing: "-0.05em",
+                  maxWidth: "14ch",
+                  fontWeight: 600,
+                }}
+              >
+                Accountants for{" "}
+                <span className="text-amber" style={{ fontWeight: 600 }}>
+                  ambitious
+                </span>{" "}
+                businesses.
+              </h1>
+
+              <p
+                className="mt-10 text-paper/85 leading-relaxed"
+                style={{
+                  fontSize: "clamp(1.0625rem, 1.4vw, 1.25rem)",
+                  maxWidth: "52ch",
+                  letterSpacing: "-0.005em",
+                }}
+              >
+                We are a small Glasgow firm built around a specific idea: that
+                an accountant should be the person you call before a decision,
+                not the one who reconciles its consequences.
+              </p>
+
+              <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-5">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-3 bg-paper text-ink px-7 py-[1.0625rem] text-[0.9375rem] font-medium rounded-[2px] hover:bg-paper-deep transition-colors"
+                >
+                  A 30-minute call to see how we can help you
+                  <span className="text-amber">→</span>
+                </Link>
+                <Link
+                  href="/services"
+                  className="inline-flex items-center gap-2 text-paper border-b border-paper/40 hover:border-paper pb-1 transition-colors text-[0.9375rem]"
+                >
+                  See services <span className="text-amber">→</span>
+                </Link>
+              </div>
+            </div>
+
+            {/* Countdown panel — sits to right of headline on lg, below on mobile */}
+            <div className="lg:col-span-5 xl:col-span-5 relative">
+              <div
+                className="relative p-7 md:p-9"
+                style={{
+                  background: "oklch(0.28 0.11 245)",
+                  border: "1px solid oklch(0.55 0.14 245)",
+                }}
+              >
+                <DeadlineCountdown />
+
+                <div
+                  className="mt-8 pt-6 grid grid-cols-3 gap-4"
+                  style={{ borderTop: "1px solid oklch(0.45 0.12 245)" }}
+                >
+                  <div>
+                    <p className="font-display tabular text-paper text-[1.5rem] md:text-[1.875rem] leading-none font-semibold" style={{ letterSpacing: "-0.04em" }}>
+                      <CountUp to={240} suffix="+" />
+                    </p>
+                    <p className="mt-2 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-paper/65 leading-snug">
+                      Clients<br />served
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-display tabular text-paper text-[1.5rem] md:text-[1.875rem] leading-none font-semibold" style={{ letterSpacing: "-0.04em" }}>
+                      <CountUp to={11} />
+                    </p>
+                    <p className="mt-2 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-paper/65 leading-snug">
+                      Years in<br />practice
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-display tabular text-paper text-[1.5rem] md:text-[1.875rem] leading-none font-semibold" style={{ letterSpacing: "-0.04em" }}>
+                      <CountUp to={100} suffix="%" />
+                    </p>
+                    <p className="mt-2 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-paper/65 leading-snug">
+                      Fees<br />honoured
+                    </p>
+                  </div>
+                </div>
+
+                {/* Corner registration marks */}
+                <span
+                  className="absolute top-3 left-3 w-3 h-3 border-l border-t"
+                  style={{ borderColor: "oklch(0.62 0.14 55)" }}
+                  aria-hidden
+                />
+                <span
+                  className="absolute bottom-3 right-3 w-3 h-3 border-r border-b"
+                  style={{ borderColor: "oklch(0.62 0.14 55)" }}
+                  aria-hidden
+                />
+              </div>
+              <p className="mt-4 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-paper/55">
+                Updated hourly · Based on UK tax-year cycle
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -393,7 +503,12 @@ export default function HomePage() {
                   {f.label}
                 </dt>
                 <dd className="col-span-12 md:col-span-7 flex items-baseline gap-4 md:gap-6 flex-wrap">
-                  <span className="display-num">{f.value}</span>
+                  <CountUp
+                    to={f.num}
+                    prefix={f.prefix}
+                    suffix={f.suffix}
+                    className="display-num"
+                  />
                   <span className="text-[0.875rem] uppercase tracking-[0.08em] text-paper/70 leading-snug max-w-[20ch]">
                     {f.unit}
                   </span>
@@ -404,10 +519,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* WORKED EXAMPLE */}
+      {/* WORKED PAPER — composite client schedule */}
       <section className="container-edit py-20 md:py-28">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-          <div className="md:col-span-4">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
+          <div className="md:col-span-5">
             <p className="eyebrow section-rule">A worked example</p>
             <h2
               className="mt-6 font-display"
@@ -420,42 +535,186 @@ export default function HomePage() {
             >
               What "proactive tax planning" actually looks like.
             </h2>
-            <p className="deck mt-6">
-              The phrase appears on every accountant's website. Here is what we
-              mean by it, in a single composite case.
-            </p>
           </div>
-
-          <div className="md:col-span-7 md:col-start-6 prose-narrow">
-            <p>
-              A Glasgow construction company, two directors, turnover £1.8m,
-              eight employees, came to us in October from a larger firm. Their
-              previous accountant filed accurate accounts every March and sent
-              a corporation tax bill of £64,000.
-            </p>
-            <p>
-              At engagement we scheduled a Q3 review. In that meeting we
-              identified £180,000 of capital expenditure on plant and machinery
-              that qualified for full expensing, R&amp;D-adjacent process work
-              that met HMRC's enhanced relief criteria, and a director
-              remuneration mix that had been left on default rather than
-              optimised against the dividend allowance and threshold.
-            </p>
-            <p>
-              The work was finished in November. The next year's corporation
-              tax fell to £21,500. The directors took the same combined
-              household income with a materially lower personal tax exposure.
-              None of this required aggressive planning, offshore structures,
-              or schemes. It required{" "}
-              <span className="amber-underline">a phone call in October</span>{" "}
-              rather than a reconciliation in March.
-            </p>
-            <p className="text-ink-mute text-[0.875rem] italic mt-8">
-              Composite case study drawn from the experience of multiple
-              clients. Figures illustrative.
+          <div className="md:col-span-6 md:col-start-7">
+            <p className="deck">
+              The phrase appears on every accountant's website. Below is what
+              we mean by it, written as a composite client schedule.
             </p>
           </div>
         </div>
+
+        {/* Working paper masthead */}
+        <div
+          className="relative bg-paper-deep"
+          style={{ border: "1px solid var(--color-rule)" }}
+        >
+          {/* Top header bar */}
+          <div
+            className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-6 px-6 md:px-8 py-4 md:py-5 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-ink-mute"
+            style={{ borderBottom: "1px solid var(--color-rule)" }}
+          >
+            <div className="flex gap-6">
+              <span>
+                <span className="text-ink-faint">Client</span>{" "}
+                <span className="text-ink">ANM/0142</span>
+              </span>
+              <span>
+                <span className="text-ink-faint">Sector</span>{" "}
+                <span className="text-ink">Construction</span>
+              </span>
+            </div>
+            <div className="flex gap-6">
+              <span>
+                <span className="text-ink-faint">Y/E</span>{" "}
+                <span className="text-ink">31 Mar</span>
+              </span>
+              <span>
+                <span className="text-ink-faint">Prepared</span>{" "}
+                <span className="text-ink">A.M.</span>
+              </span>
+              <span>
+                <span className="text-ink-faint">Doc</span>{" "}
+                <span className="text-ink">CT-SCH-001</span>
+              </span>
+            </div>
+          </div>
+
+          {/* Two-column schedule */}
+          <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x" style={{ borderColor: "var(--color-rule)" }}>
+            {/* Before */}
+            <div className="p-6 md:p-8">
+              <div className="flex items-baseline gap-4 mb-6">
+                <span className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-ink-mute">
+                  Col. A
+                </span>
+                <h3 className="font-display text-[1.125rem] md:text-[1.25rem] font-semibold tracking-[-0.02em]">
+                  Before — previous accountant
+                </h3>
+              </div>
+
+              <dl className="space-y-0 font-mono text-[0.875rem]">
+                {[
+                  ["Turnover", "1,800,000"],
+                  ["Operating profit", "342,000"],
+                  ["Capital allowances claimed", "12,400"],
+                  ["R&D relief", "—"],
+                  ["Director remuneration mix", "Default"],
+                  ["Taxable profit", "329,600"],
+                ].map(([k, v]) => (
+                  <div
+                    key={k}
+                    className="flex justify-between items-baseline py-2.5 hairline-top"
+                  >
+                    <dt className="text-ink-soft">{k}</dt>
+                    <dd className="tabular text-ink">{v.startsWith("—") ? v : k.includes("mix") ? v : `£${v}`}</dd>
+                  </div>
+                ))}
+              </dl>
+
+              <div
+                className="mt-6 pt-5 flex justify-between items-baseline"
+                style={{ borderTop: "2px solid var(--color-ink)" }}
+              >
+                <p className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-ink-mute">
+                  CT due
+                </p>
+                <p
+                  className="font-display tabular font-semibold text-ink"
+                  style={{ fontSize: "clamp(1.875rem, 3vw, 2.5rem)", letterSpacing: "-0.04em" }}
+                >
+                  £64,000
+                </p>
+              </div>
+              <p className="mt-3 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-ink-mute">
+                Effective rate <span className="text-ink">19.4%</span>
+              </p>
+            </div>
+
+            {/* After */}
+            <div className="p-6 md:p-8 relative" style={{ backgroundColor: "oklch(0.94 0.012 85)" }}>
+              <div className="flex items-baseline gap-4 mb-6">
+                <span className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-amber">
+                  Col. B
+                </span>
+                <h3 className="font-display text-[1.125rem] md:text-[1.25rem] font-semibold tracking-[-0.02em]">
+                  After — with ANM, Q3 review
+                </h3>
+              </div>
+
+              <dl className="space-y-0 font-mono text-[0.875rem]">
+                {[
+                  ["Turnover", "1,800,000", "—"],
+                  ["Operating profit", "342,000", "—"],
+                  ["Capital allowances (full expensing)", "180,000", "+£167,600"],
+                  ["R&D enhanced relief", "47,200", "+£47,200"],
+                  ["Director remuneration mix", "Optimised", "↓"],
+                  ["Taxable profit", "114,800", "−£214,800"],
+                ].map(([k, v, delta]) => (
+                  <div
+                    key={k}
+                    className="grid grid-cols-12 gap-2 items-baseline py-2.5 hairline-top"
+                  >
+                    <dt className="col-span-7 text-ink-soft">{k}</dt>
+                    <dd className="col-span-3 tabular text-ink text-right">
+                      {v === "—" || k.includes("mix") || k.includes("Optimised") ? v : `£${v}`}
+                    </dd>
+                    <dd className="col-span-2 tabular text-amber text-right text-[0.75rem]">{delta}</dd>
+                  </div>
+                ))}
+              </dl>
+
+              <div
+                className="mt-6 pt-5 flex justify-between items-baseline"
+                style={{ borderTop: "2px solid var(--color-blue)" }}
+              >
+                <p className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-ink-mute">
+                  CT due
+                </p>
+                <p
+                  className="font-display tabular font-semibold text-blue"
+                  style={{ fontSize: "clamp(1.875rem, 3vw, 2.5rem)", letterSpacing: "-0.04em" }}
+                >
+                  £21,500
+                </p>
+              </div>
+              <div className="mt-3 flex items-baseline justify-between">
+                <p className="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-ink-mute">
+                  Effective rate <span className="text-ink">6.5%</span>
+                </p>
+                <p className="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-amber">
+                  Saving <span className="text-ink tabular">£42,500</span>
+                </p>
+              </div>
+
+              {/* Amber registration tick */}
+              <span
+                className="absolute top-6 right-6 w-2 h-2 bg-amber"
+                aria-hidden
+              />
+            </div>
+          </div>
+
+          {/* Footnote bar */}
+          <div
+            className="px-6 md:px-8 py-4 md:py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-[0.75rem] font-mono uppercase tracking-[0.14em] text-ink-mute"
+            style={{ borderTop: "1px solid var(--color-rule)", backgroundColor: "var(--color-paper)" }}
+          >
+            <span>
+              Composite case. Figures illustrative. Methods conventional, properly
+              applied.
+            </span>
+            <span className="text-ink">Reviewed · Approved · Filed</span>
+          </div>
+        </div>
+
+        <p className="mt-8 text-ink-soft text-[1rem] leading-relaxed max-w-[68ch]">
+          The work was finished in November. The directors took the same
+          combined household income with materially lower personal tax exposure.
+          No aggressive planning, no offshore structures, no schemes.{" "}
+          <span className="amber-underline">A phone call in October</span>,
+          rather than a reconciliation in March.
+        </p>
       </section>
 
       {/* CTA BAND */}
