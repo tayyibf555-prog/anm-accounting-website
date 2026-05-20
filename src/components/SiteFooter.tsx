@@ -101,7 +101,7 @@ export function SiteFooter() {
             >
               ANM<span className="text-amber">.</span>
             </div>
-            <p className="deck mt-6" style={{ color: "oklch(0.90 0.02 250)" }}>
+            <p className="deck mt-6" style={{ color: "oklch(0.90 0.04 250)" }}>
               Chartered accountants for owner-managed businesses across Glasgow
               and the central belt.
             </p>

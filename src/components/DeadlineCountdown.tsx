@@ -87,7 +87,7 @@ export function DeadlineCountdown() {
     <div className="relative">
       <div
         className="flex items-center gap-3 mb-3 font-mono text-[0.6875rem] uppercase tracking-[0.18em]"
-        style={{ color: "oklch(0.72 0.04 250)" }}
+        style={{ color: "oklch(0.78 0.07 250)" }}
       >
         <span className="inline-block w-2 h-2 rounded-full bg-amber animate-pulse" />
         Live · Next UK tax deadline
@@ -105,7 +105,7 @@ export function DeadlineCountdown() {
             Days
           </p>
         </div>
-        <div className="col-span-8 md:col-span-9 pl-4 md:pl-6" style={{ borderLeft: "1px solid oklch(0.40 0.06 252)" }}>
+        <div className="col-span-8 md:col-span-9 pl-4 md:pl-6" style={{ borderLeft: "1px solid oklch(0.48 0.12 262)" }}>
           <p className="font-mono tabular text-[0.875rem] text-paper" style={{ letterSpacing: "0.04em" }}>
             {deadline.date}
           </p>
