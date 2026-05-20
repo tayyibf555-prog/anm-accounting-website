@@ -54,83 +54,76 @@ export function EngagementDiagram() {
 
       {/* Diagram body */}
       <div className="p-6 md:p-10">
-        <div className="grid grid-cols-1 md:grid-cols-7 gap-y-8 md:gap-x-4 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-y-10 md:gap-x-6 items-stretch">
           {steps.map((s, i) => (
-            <div
-              key={s.n}
-              className="md:col-span-2 contents md:block"
-              style={{
-                gridColumn: i < 3 ? `${i * 2 + 1} / span 2` : undefined,
-              }}
-            >
-              <div className="relative md:h-full flex md:block items-start gap-4">
-                {/* Step block */}
+            <div key={s.n} className="relative h-full">
+              {/* Step block */}
+              <div
+                className="w-full h-full relative bg-paper"
+                style={{ border: "1px solid var(--color-rule)" }}
+              >
                 <div
-                  className="w-full relative bg-paper"
-                  style={{ border: "1px solid var(--color-rule)" }}
+                  className="flex items-baseline justify-between px-4 py-3"
+                  style={{ borderBottom: "1px solid var(--color-rule)" }}
                 >
-                  <div
-                    className="flex items-baseline justify-between px-4 py-3"
-                    style={{ borderBottom: "1px solid var(--color-rule)" }}
+                  <span className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-ink-mute">
+                    Step / {s.n}
+                  </span>
+                  <span className="font-mono tabular text-[0.6875rem] uppercase tracking-[0.14em] text-amber">
+                    {s.duration}
+                  </span>
+                </div>
+                <div className="px-4 py-4">
+                  <p
+                    className="font-display font-semibold tracking-[-0.02em] text-ink"
+                    style={{ fontSize: "1.125rem", lineHeight: 1.15 }}
                   >
-                    <span className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-ink-mute">
-                      Step / {s.n}
-                    </span>
-                    <span className="font-mono tabular text-[0.6875rem] uppercase tracking-[0.14em] text-amber">
-                      {s.duration}
-                    </span>
-                  </div>
-                  <div className="px-4 py-4">
-                    <p
-                      className="font-display font-semibold tracking-[-0.02em] text-ink"
-                      style={{ fontSize: "1.125rem", lineHeight: 1.15 }}
-                    >
-                      {s.label}
-                    </p>
-                    <p className="mt-2 text-[0.8125rem] leading-snug text-ink-soft">
-                      {s.detail}
-                    </p>
-                  </div>
-
-                  {/* Corner registration */}
-                  <span
-                    className="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-ink"
-                    aria-hidden
-                  />
-                  <span
-                    className="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-ink"
-                    aria-hidden
-                  />
+                    {s.label}
+                  </p>
+                  <p className="mt-2 text-[0.8125rem] leading-snug text-ink-soft">
+                    {s.detail}
+                  </p>
                 </div>
 
-                {/* Connector — between steps */}
-                {i < steps.length - 1 && (
-                  <>
-                    {/* Desktop: horizontal arrow on the right */}
-                    <div
-                      aria-hidden
-                      className="hidden md:flex absolute top-1/2 -translate-y-1/2 items-center gap-1"
+                {/* Corner registration */}
+                <span
+                  className="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-ink"
+                  aria-hidden
+                />
+                <span
+                  className="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-ink"
+                  aria-hidden
+                />
+              </div>
+
+              {/* Connector — only between cards, not after the last */}
+              {i < steps.length - 1 && (
+                <>
+                  {/* Desktop: small arrow in the gap on the right */}
+                  <div
+                    aria-hidden
+                    className="hidden md:flex absolute top-1/2 -translate-y-1/2 items-center justify-center pointer-events-none"
+                    style={{
+                      left: "100%",
+                      width: "24px",
+                    }}
+                  >
+                    <span
+                      className="block flex-1 h-px mr-1"
                       style={{
-                        left: "calc(100% + 2px)",
-                        width: "calc(50% / 2)",
+                        backgroundImage:
+                          "linear-gradient(to right, var(--color-ink-faint) 50%, transparent 50%)",
+                        backgroundSize: "6px 1px",
+                        backgroundRepeat: "repeat-x",
                       }}
-                    >
-                      <span
-                        className="block flex-1 h-px"
-                        style={{
-                          backgroundImage:
-                            "linear-gradient(to right, var(--color-ink-faint) 50%, transparent 50%)",
-                          backgroundSize: "8px 1px",
-                          backgroundRepeat: "repeat-x",
-                        }}
-                      />
-                      <span className="text-amber text-[0.75rem]">→</span>
-                    </div>
-                    {/* Mobile: vertical arrow below */}
-                    <div
-                      aria-hidden
-                      className="md:hidden absolute -bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center"
-                    >
+                    />
+                    <span className="text-amber text-[0.75rem]">→</span>
+                  </div>
+                  {/* Mobile: vertical arrow below */}
+                  <div
+                    aria-hidden
+                    className="md:hidden absolute -bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none"
+                  >
                       <span
                         className="block w-px h-4"
                         style={{
@@ -140,11 +133,10 @@ export function EngagementDiagram() {
                           backgroundRepeat: "repeat-y",
                         }}
                       />
-                      <span className="text-amber text-[0.75rem]">↓</span>
-                    </div>
-                  </>
-                )}
-              </div>
+                    <span className="text-amber text-[0.75rem]">↓</span>
+                  </div>
+                </>
+              )}
             </div>
           ))}
         </div>
