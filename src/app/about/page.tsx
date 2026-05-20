@@ -87,7 +87,7 @@ export default function AboutPage() {
 
           <div className="md:col-span-8 md:col-start-5 prose-narrow">
             <p>
-              ANM was founded in 2014 by Alexander MacDonald, who had spent
+              ANM was founded in 2014 by {"{ owner name }"}, who had spent
               twelve years at a mid-tier Glasgow firm and concluded that the
               standard model of accountancy practice was structurally unable to
               do the work clients actually wanted.
