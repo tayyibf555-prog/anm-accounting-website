@@ -248,7 +248,7 @@ export default function ServicesPage() {
               >
                 Discover, propose, engage. Three steps, two weeks.
               </h2>
-              <p className="deck mt-6" style={{ color: "oklch(0.92 0.03 245)" }}>
+              <p className="deck mt-6" style={{ color: "oklch(0.90 0.02 250)" }}>
                 Discovery call. Written fee proposal within five working days.
                 Engagement letter and software handover within a fortnight.
               </p>

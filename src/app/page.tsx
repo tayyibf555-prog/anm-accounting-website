@@ -3,6 +3,8 @@ import { TaxTicker } from "@/components/TaxTicker";
 import { BlueprintSchematic } from "@/components/BlueprintSchematic";
 import { DeadlineCountdown } from "@/components/DeadlineCountdown";
 import { CountUp } from "@/components/CountUp";
+import { EngagementDiagram } from "@/components/EngagementDiagram";
+import { YearCalendar } from "@/components/YearCalendar";
 
 const services = [
   {
@@ -73,7 +75,7 @@ export default function HomePage() {
           className="absolute inset-y-0 right-0 hidden lg:block pointer-events-none"
           style={{
             width: "min(58%, 760px)",
-            color: "oklch(0.85 0.04 245)",
+            color: "oklch(0.82 0.025 250)",
             opacity: 0.6,
             transform: "translate(8%, 4%)",
           }}
@@ -87,7 +89,7 @@ export default function HomePage() {
             className="grid grid-cols-2 md:grid-cols-12 gap-4 py-5 mb-12 md:mb-20"
             style={{
               borderTop: "2px solid var(--color-paper)",
-              borderBottom: "1px solid oklch(0.55 0.14 245)",
+              borderBottom: "1px solid oklch(0.40 0.06 252)",
             }}
           >
             <div className="col-span-2 md:col-span-3 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-paper/70 flex items-center gap-3">
@@ -163,15 +165,15 @@ export default function HomePage() {
               <div
                 className="relative p-7 md:p-9"
                 style={{
-                  background: "oklch(0.28 0.11 245)",
-                  border: "1px solid oklch(0.55 0.14 245)",
+                  background: "oklch(0.22 0.055 254)",
+                  border: "1px solid oklch(0.40 0.06 252)",
                 }}
               >
                 <DeadlineCountdown />
 
                 <div
                   className="mt-8 pt-6 grid grid-cols-3 gap-4"
-                  style={{ borderTop: "1px solid oklch(0.45 0.12 245)" }}
+                  style={{ borderTop: "1px solid oklch(0.35 0.05 252)" }}
                 >
                   <div>
                     <p className="font-display tabular text-paper text-[1.5rem] md:text-[1.875rem] leading-none font-semibold" style={{ letterSpacing: "-0.04em" }}>
@@ -318,6 +320,35 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ENGAGEMENT DIAGRAM — fills the gap between manifesto and services */}
+      <section className="container-edit pb-20 md:pb-28">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-10">
+          <div className="md:col-span-6">
+            <p className="eyebrow section-rule">How it works</p>
+            <h2
+              className="mt-6 font-display"
+              style={{
+                fontSize: "clamp(2rem, 4.2vw, 3.5rem)",
+                lineHeight: 0.98,
+                letterSpacing: "-0.04em",
+                fontWeight: 600,
+                maxWidth: "20ch",
+              }}
+            >
+              From first call to first review, in fourteen working days.
+            </h2>
+          </div>
+          <div className="md:col-span-5 md:col-start-8 self-end">
+            <p className="deck">
+              The same four steps for every engagement. Written, dated, signed.
+              No discovery sales funnel.
+            </p>
+          </div>
+        </div>
+
+        <EngagementDiagram />
+      </section>
+
       {/* SERVICES — numbered editorial rows */}
       <section className="container-edit py-20 md:py-28">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-10">
@@ -418,12 +449,43 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* YEAR CALENDAR — visual fills the gap between services and figures */}
+      <section className="hairline-top bg-paper-deep">
+        <div className="container-edit py-20 md:py-28">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-10">
+            <div className="md:col-span-6">
+              <p className="eyebrow section-rule">The accountant's year</p>
+              <h2
+                className="mt-6 font-display"
+                style={{
+                  fontSize: "clamp(2rem, 4.2vw, 3.5rem)",
+                  lineHeight: 0.98,
+                  letterSpacing: "-0.04em",
+                  fontWeight: 600,
+                  maxWidth: "22ch",
+                }}
+              >
+                Every UK deadline that matters, on one page.
+              </h2>
+            </div>
+            <div className="md:col-span-5 md:col-start-8 self-end">
+              <p className="deck">
+                We track these so you don't have to. The next eleven dates that
+                shape every owner-managed business in the UK.
+              </p>
+            </div>
+          </div>
+
+          <YearCalendar />
+        </div>
+      </section>
+
       {/* FIGURE BAND — full-bleed, monumental numerals */}
       <section className="blue-band">
         <div className="container-edit py-20 md:py-28">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-8 md:mb-10">
             <div className="md:col-span-7">
-              <p className="eyebrow section-rule" style={{ color: "oklch(0.78 0.06 245)" }}>
+              <p className="eyebrow section-rule" style={{ color: "oklch(0.72 0.04 250)" }}>
                 In figures
               </p>
               <h2
@@ -440,7 +502,7 @@ export default function HomePage() {
               </h2>
             </div>
             <div className="md:col-span-4 md:col-start-9 self-end">
-              <p className="deck" style={{ color: "oklch(0.92 0.03 245)", maxWidth: "42ch" }}>
+              <p className="deck" style={{ color: "oklch(0.90 0.02 250)", maxWidth: "42ch" }}>
                 We publish these because they make us accountable, and because
                 vague claims are easy to make and impossible to verify.
               </p>
@@ -450,10 +512,10 @@ export default function HomePage() {
           {/* Methodology strip — sits between heading and figures */}
           <div
             className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 py-6 md:py-7 mb-10"
-            style={{ borderTop: "1px solid oklch(0.45 0.12 245)", borderBottom: "1px solid oklch(0.45 0.12 245)" }}
+            style={{ borderTop: "1px solid oklch(0.35 0.05 252)", borderBottom: "1px solid oklch(0.35 0.05 252)" }}
           >
             <div className="md:col-span-3 flex items-baseline gap-3">
-              <span className="font-mono text-[0.6875rem] uppercase tracking-[0.14em]" style={{ color: "oklch(0.78 0.06 245)" }}>
+              <span className="font-mono text-[0.6875rem] uppercase tracking-[0.14em]" style={{ color: "oklch(0.72 0.04 250)" }}>
                 Last verified
               </span>
               <span className="font-mono tabular text-paper text-[0.875rem]" style={{ letterSpacing: "0.04em" }}>
@@ -461,7 +523,7 @@ export default function HomePage() {
               </span>
             </div>
             <div className="md:col-span-3 flex items-baseline gap-3">
-              <span className="font-mono text-[0.6875rem] uppercase tracking-[0.14em]" style={{ color: "oklch(0.78 0.06 245)" }}>
+              <span className="font-mono text-[0.6875rem] uppercase tracking-[0.14em]" style={{ color: "oklch(0.72 0.04 250)" }}>
                 Reviewed
               </span>
               <span className="font-mono tabular text-paper text-[0.875rem]" style={{ letterSpacing: "0.04em" }}>
@@ -469,7 +531,7 @@ export default function HomePage() {
               </span>
             </div>
             <div className="md:col-span-3 flex items-baseline gap-3">
-              <span className="font-mono text-[0.6875rem] uppercase tracking-[0.14em]" style={{ color: "oklch(0.78 0.06 245)" }}>
+              <span className="font-mono text-[0.6875rem] uppercase tracking-[0.14em]" style={{ color: "oklch(0.72 0.04 250)" }}>
                 Sourced
               </span>
               <span className="font-mono tabular text-paper text-[0.875rem]" style={{ letterSpacing: "0.04em" }}>
@@ -477,7 +539,7 @@ export default function HomePage() {
               </span>
             </div>
             <div className="md:col-span-3 flex items-baseline gap-3">
-              <span className="font-mono text-[0.6875rem] uppercase tracking-[0.14em]" style={{ color: "oklch(0.78 0.06 245)" }}>
+              <span className="font-mono text-[0.6875rem] uppercase tracking-[0.14em]" style={{ color: "oklch(0.72 0.04 250)" }}>
                 Open to
               </span>
               <span className="font-mono tabular text-paper text-[0.875rem]" style={{ letterSpacing: "0.04em" }}>
@@ -492,11 +554,11 @@ export default function HomePage() {
                 key={i}
                 className="reveal grid grid-cols-12 gap-6 md:gap-10 items-baseline py-10 md:py-12"
                 style={{
-                  borderTop: "1px solid oklch(0.45 0.12 245)",
-                  borderBottom: i === figures.length - 1 ? "1px solid oklch(0.45 0.12 245)" : "none",
+                  borderTop: "1px solid oklch(0.35 0.05 252)",
+                  borderBottom: i === figures.length - 1 ? "1px solid oklch(0.35 0.05 252)" : "none",
                 }}
               >
-                <span className="col-span-2 md:col-span-1 font-mono tabular text-[0.75rem] tracking-[0.08em] uppercase opacity-70" style={{ color: "oklch(0.78 0.06 245)" }}>
+                <span className="col-span-2 md:col-span-1 font-mono tabular text-[0.75rem] tracking-[0.08em] uppercase opacity-70" style={{ color: "oklch(0.72 0.04 250)" }}>
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <dt className="col-span-10 md:col-span-4 text-[0.875rem] uppercase tracking-[0.08em] text-paper/80 self-center leading-snug">

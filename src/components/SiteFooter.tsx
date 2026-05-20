@@ -101,7 +101,7 @@ export function SiteFooter() {
             >
               ANM<span className="text-amber">.</span>
             </div>
-            <p className="deck mt-6" style={{ color: "oklch(0.92 0.03 245)" }}>
+            <p className="deck mt-6" style={{ color: "oklch(0.90 0.02 250)" }}>
               Chartered accountants for owner-managed businesses across Glasgow
               and the central belt.
             </p>
@@ -115,9 +115,8 @@ export function SiteFooter() {
             <p className="eyebrow mb-5">Office</p>
             <address className="not-italic text-[0.9375rem] leading-relaxed text-paper/90">
               ANM Accounting Ltd<br />
-              {/* REPLACE */}
-              142 St Vincent Street<br />
-              Glasgow G2 5LA<br />
+              95–107 Lancefield Street<br />
+              Glasgow G3 8HZ<br />
               United Kingdom
             </address>
             <p className="mt-6 text-[0.9375rem] text-paper/90">
